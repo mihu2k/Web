@@ -23,6 +23,7 @@ require_once("db.php");
 <?php
 $data = $_SESSION['data'];
 $fullname_user = $data['hoten'];
+$permission = get_permission($data['email']);
 $token = '';
 $fullname= '';
 $classname = '';
@@ -102,7 +103,11 @@ if(isset($_POST['email'])){
                         <div class="body-detail-students-heading">
                             <h2 class="body-detail-member-title">Teachers</h2>
                             <div class="body-detail-student-quantity">
+                                <?php 
+                                    if($permission == 0 || $permission == 1){
+                                ?>
                                 <i class="fas fa-user-plus body-detail-student-icon-add"></i>
+                                <?php } ?>
                             </div>
                         </div>
                         <hr class="body-detail-separator-classmate">
@@ -114,13 +119,16 @@ if(isset($_POST['email'])){
                                 $permisson = $row['permission'];
                                 $people_fullname = $row['hoten'];
                                 if ($permisson == 1 || $permisson == 0) {
-                                    # code...
-                                    echo<<<EOT
+                                ?>
                                 <li class="body-detail-teachers-item">
-                                    <div class="body-detail-teachers-item-name">$people_fullname</div>
+                                    <div class="body-detail-teachers-item-name"><?=$people_fullname?></div>
+                                    <?php 
+                                        if($permission == 0 || $permission == 1){
+                                    ?>
                                     <div class="body-detail-teachers-item-icon"><i class="fas fa-user-minus"></i></div>
+                                    <?php } ?>
                                 </li>
-                            EOT;
+                            <?php
                                 }
                             }
                             ?>
@@ -130,7 +138,11 @@ if(isset($_POST['email'])){
                             <h2 class="body-detail-member-title">Classmates</h2>
                             <div class="body-detail-student-quantity">
                                 <span class="body-detail-student-quantity-title"><?= $count ?> students</span>
+                                <?php 
+                                    if($permission == 0 || $permission == 1){
+                                ?>
                                 <i class="fas fa-user-plus body-detail-student-icon-add"></i>
+                                <?php } ?>
                             </div>
                         </div>
                         <hr class="body-detail-separator-classmate">
@@ -143,12 +155,16 @@ if(isset($_POST['email'])){
                                 if ($permisson == 2) {
                                     $count = $count + 1;
                                     # code...
-                                    echo<<<EOT
+                            ?>
                                         <li class="body-detail-students-item">
-                                            <div class="body-detail-students-item-name">$people_fullname</div>
+                                            <div class="body-detail-students-item-name"><?=$people_fullname?></div>
+                                            <?php 
+                                                if($permission == 0 || $permission == 1){
+                                            ?>
                                             <div class="body-detail-students-item-icon"><i class="fas fa-user-minus"></i></div>
+                                            <?php } ?>
                                         </li>
-                                        EOT;
+                            <?php
                                 }
                             }
         }
@@ -159,6 +175,7 @@ if(isset($_POST['email'])){
                 </div>
             </div>
         </div>
+        <?php echo $count ?>
 
         <!-- Modal list class -->
         <div class="modal-list-class">
