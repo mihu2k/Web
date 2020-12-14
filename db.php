@@ -8,7 +8,7 @@
 	// Load Composer's autoloader
 	require 'vendor/autoload.php';
 
-	define('HOST', 'ggclassroom-hhdn');
+	define('HOST', '127.0.0.1');
 	define('USER', 'root');
 	define('PASS', '');
 	define('DB', 'web');
