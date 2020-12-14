@@ -107,42 +107,50 @@ if(isset($_POST['classcode'])){
                 $result = load_data_home($email,get_permission($email));
                 if(!empty($result)){
                     while ($row = $result->fetch_assoc()) {
+                        $id = $row['id'];
                         $classname = $row['classname'];
                         $email = $row['email'];
                         $token = $row['token'];
                         $img = $row['img'];
                         $fullname = get_fullname($email);
-                        echo <<<EOT
-                                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
-                                        <div class="card-item">
-                                            <div class="card-item-img" style="background-image: url('$img')"></div>
-                                            <div class="card-body">
-                                                <a href="" class="card-body-icon">
-                                                    <i class="far fa-address-book"></i>
-                                                </a>
-                                                <a href="" class="card-body-icon">
-                                                    <i class="far fa-folder-open"></i>
-                                                </a>
-                                            </div>
+                ?>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+                    <div class="card-item">
+                        <div class="card-item-img" style="background-image: url('<?=$img?>')">
+                        </div>
+                        <div class="card-body">
+                            <a href="" class="card-body-icon">
+                                <i class="far fa-address-book"></i>
+                            </a>
+                            <a href="" class="card-body-icon">
+                                <i class="far fa-folder-open"></i>
+                            </a>
+                        </div>
 
-                                            <div class="card-item-label">
-                                                <a href="detailClass.php?token=$token" class="card-item-label-link">
-                                                    <h4 class="card-item-label-course">$classname</h4>
-                                                </a>
-                                                <span class="card-item-label-name">$fullname</span>
-                                            </div>
+                        <div class="card-item-label">
+                            <a href="detailClass.php?token=<?=$token?>" class="card-item-label-link">
+                                <h4 class="card-item-label-course"><?=$classname?></h4>
+                            </a>
+                            <span class="card-item-label-name"><?=$fullname?></span>
+                        </div>
 
-                                            <div class="card-item-options">
-                                                <i class="fas fa-ellipsis-v"></i>
+                        <div class="card-item-options">
+                            <i class="fas fa-ellipsis-v">
+                                
+                            </i>
 
-                                                <ul class="card-item-dropdown">
-                                                    <li class="card-item-dropdown-item card-item-dropdown-item-modify"><a href="modify.php?token=$token" class="card-item-dropdown-item-link">Modify</a></li>
-                                                    <li class="card-item-dropdown-item card-item-dropdown-item-remove"><a href="remove.php?token=$token" class="card-item-dropdown-item-link">Remove</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                    EOT;
+                            <ul class="card-item-dropdown">
+                                <li class="card-item-dropdown-item card-item-dropdown-item-modify">
+                                    <a href="modify.php?token=<?=$token?>" class="card-item-dropdown-item-link">Modify</a>
+                                </li>
+                                <li class="card-item-dropdown-item card-item-dropdown-item-remove">
+                                    <a href="confirmDeleteClass.php?token=<?=$token?>" class="card-item-dropdown-item-link">Remove</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                    <?php
                     }
                 }
                 ?>
@@ -272,7 +280,7 @@ if(isset($_POST['classcode'])){
             </div>
         </div>
 
-        <div class="auth-form-dialog">
+        <!-- <div class="auth-form-dialog">
             <div class="auth-form__container auth-form__container-remove">
 
                 <form action="" method="POST" id="form-remove">
@@ -287,7 +295,7 @@ if(isset($_POST['classcode'])){
                     </div>
                 </form>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 

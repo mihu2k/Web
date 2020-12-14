@@ -477,6 +477,7 @@ function getNewsByToken($token){
         return [];
     }
 }
+
 function getNameUserByEmail($email){
 
     $sql = "select hoten from user where email = ?";

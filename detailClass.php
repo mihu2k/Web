@@ -51,16 +51,16 @@
             </ul>
 
             <ul class="header__list-center">
-                    <li class="header__list-center-item">
-                        <a href="" class="header__list-center-item-link">Stream</a>
-                    </li>
-                    <li class="header__list-center-item">
-                        <a href="" class="header__list-center-item-link">Classwork</a>
-                    </li>
-                    <li class="header__list-center-item">
-                        <a href="people.php?token=<?=$token?>" class="header__list-center-item-link">People</a>
-                    </li>
-                </ul>
+                <li class="header__list-center-item">
+                    <a href="" class="header__list-center-item-link">Stream</a>
+                </li>
+                <li class="header__list-center-item">
+                    <a href="" class="header__list-center-item-link">Classwork</a>
+                </li>
+                <li class="header__list-center-item">
+                    <a href="people.php?token=<?=$token?>" class="header__list-center-item-link">People</a>
+                </li>
+            </ul>
 
             <ul class="header__list-right">
                 <li class="header__list-right-item">
@@ -127,7 +127,7 @@
                                         <select name="cchooseState" id="chooseState" class="form-control" value="0">
                                             <option value="0">News</option>
                                             <option value="1">Document</option>
-                                            <option value="2">Image</option>
+                                            <option value="2">Assignment</option>
                                         </select>
                                     </div>
 
@@ -234,7 +234,7 @@
                                 <?php
                                 if($item['type'] == 2){
                                     ?>
-                                    <a href="download.php?file=<?php echo urlencode($item['file'])?>">
+                                    <a href="assignment.php?token=<?=$token?>&id=<?=$item['id']?>">
                                         <div class="grid__right-item">
                                             <h4 class="grid__right-item-heading"><?php echo getNameUserByEmail($item['user_email']); ?> posted a new assignment: <?php echo $item['title'] ?></h4>
                                             <h5 class="grid__right-item-time"><?php echo $item['date_created'] ?></h5>
@@ -280,9 +280,7 @@
                             <h4 class="modal-list-class-body-item-class">$classname</h4>
                             <h5 class="modal-list-class-body-item-name">$fullname</h5>
                         </li>
-                        
-                    
-        EOT;
+                        EOT;
                         }
                     }
                     ?>

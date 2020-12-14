@@ -458,6 +458,20 @@ function deleteComment(id) {
     })
 }
 
+// function deleteComment(id) {
+//     var options = {
+//         method: 'DELETE',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         }
+//     }
+//     fetch(deleteComment.php + '/' + id)
+//         .then(function(response) {
+//             return response.json();
+//         })
+//         .then()
+// }
+
 $('document').ready(function () {
     setTimeout(() => {
         $('.alert-message').hide();

@@ -20,6 +20,27 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+    <?php 
+        $data = $_SESSION['data'];
+        $fullname_user = $data['hoten'];
+        $token = '';
+        $fullname= '';
+        $classname = '';
+
+        if(isset($_GET['token']) && isset($_GET['id'])){
+            $token = $_GET['token'];
+            $id = $_GET['id'];
+            $result = get_detail_class($token);
+            $item = getNewsById($id);
+            //Format ngày tạo
+            $date_created = new DateTime($item['date_created']);
+            $date_created = $date_created->format('Y-m-d');
+            //Tên lớp học và người tạo
+            $classname = $result['classname'];
+            $fullname = get_fullname($result['email']);
+        }
+
+     ?>
     <div class="home-app">
         <header class="header-home">
             <ul class="header__list-left">
@@ -27,20 +48,20 @@
                     <i class="fas fa-bars"></i>
                 </li>
                 <li class="header__list-left-item header__list-left-item-inf">
-                    <h4 class="header__list-left-class">HK1_2020_503040_Phân tích và thiết kế giải thuật_N02_1</h4>
-                    <h5 class="header__list-left-teacher-name">Trịnh Hùng Cường</h5>
+                    <h4 class="header__list-left-class"><?=$classname?></h4>
+                    <h5 class="header__list-left-teacher-name"><?=$fullname?></h5>
                 </li>
             </ul>
 
             <ul class="header__list-center">
                 <li class="header__list-center-item">
-                    <a href="detailClass.html" class="header__list-center-item-link">Stream</a>
+                    <a href="detailClass.php?token=<?=$token?>" class="header__list-center-item-link">Stream</a>
                 </li>
                 <li class="header__list-center-item">
                     <a href="" class="header__list-center-item-link">Classwork</a>
                 </li>
                 <li class="header__list-center-item">
-                    <a href="people.html" class="header__list-center-item-link">People</a>
+                    <a href="people.php?token=<?=$token?>" class="header__list-center-item-link">People</a>
                 </li>
             </ul>
 
@@ -48,7 +69,7 @@
                 <li class="header__list-right-item">
                     <img src="https://img.icons8.com/material/24/000000/circled-menu.png" class="header__list-right-item-img">
                 </li>
-                <li class="header__list-right-item header__list-right-item-name">Trương Minh Hưng
+                <li class="header__list-right-item header__list-right-item-name"><?=$fullname_user?>
                     <div class="header__list-right-item-logout">
                         <a href="logout.php" class="header__list-right-item-name-logout">Log out</a>
                     </div>
@@ -62,21 +83,21 @@
                 <div class="grid__row-assignment-body">
                     <div class="grid__row-assignment-left">
                         <div class="grid__row-assignment-left-header">
-                            <h1 class="grid__row-assignment-left-heading">Final Project</h1>
+                            <h1 class="grid__row-assignment-left-heading"><?=$item['title']?></h1>
                             <div class="grid__row-assignment-left-icon">
                                 <i class="fas fa-ellipsis-v"></i>
                             </div>
                         </div>
 
-                        <div class="grid__row-assignment-left-name">Huỳnh Ngọc Tú - 
-                            <span class="grid__row-assignment-left-timepost">Nov 19</span>
+                        <div class="grid__row-assignment-left-name"><?=getNameUserByEmail($item['user_email'])?> - 
+                            <span class="grid__row-assignment-left-timepost"><?=$date_created?></span>
                         </div>
 
                         <div class="grid__row-assignment-left-pointDue">
                             <div class="grid__row-assignment-left-due">Due 2/12/2020, 11:59 PM</div>
                         </div>
 
-                        <div class="grid__row-assignment-left-content">Các bạn nộp project cuối kỳ vào đây.</div>
+                        <div class="grid__row-assignment-left-content"><?=$item['content']?></div>
                     </div>
 
                     <div class="grid__row-assignment-right">
@@ -120,16 +141,28 @@
             </div>
 
             <h4 class="modal-list-class-name">Enrolled</h4>
-            <ul class="modal-list-class-body-list">
-                <li class="modal-list-class-body-item">
-                    <h4 class="modal-list-class-body-item-class">HK1_2020_503040_Phân tích và thiết kế giải thuật_N02_1</h4>
-                    <h5 class="modal-list-class-body-item-name">Trịnh Hùng Cường</h5>
-                </li>
-                <li class="modal-list-class-body-item">
-                    <h4 class="modal-list-class-body-item-class">HK1_2020_503040_Phân tích và thiết kế giải thuật_N02_1</h4>
-                    <h5 class="modal-list-class-body-item-name">Trịnh Hùng Cường</h5>
-                </li>
-            </ul>
+                <ul class="modal-list-class-body-list">
+                    <?php
+                    $email = $data['email'];
+                    $result = load_data_home($email,get_permission($email));
+                    if(!empty($result)){
+                        while ($row = $result->fetch_assoc()) {
+                            # code...
+                            $classname = $row['classname'];
+                            $email = $row['email'];
+                            $token = $row['token'];
+                            $fullname = get_fullname($email);
+                            echo <<<EOT
+                        <li class="modal-list-class-body-item">
+                            <h4 class="modal-list-class-body-item-class">$classname</h4>
+                            <h5 class="modal-list-class-body-item-name">$fullname</h5>
+                        </li>
+                        EOT;
+                        }
+                    }
+                    ?>
+
+                </ul>
             
         </div>
     </div>
