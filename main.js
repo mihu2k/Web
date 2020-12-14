@@ -409,7 +409,7 @@ if (inputSearchElement) {
 }
 
 
-function addComment(id) {
+function addComment(id, token) {
     const content = $('#comment-' + id).val();
     $.ajax({
         type: 'POST',
@@ -444,18 +444,20 @@ function addComment(id) {
             $('#comment-' + id).val('');
         }
     })
+    window.location = "detailClass.php?token=" + token;
 }
 
-function deleteComment(id) {
+function deleteComment(id,token) {
     $.ajax({
         type: 'GET',
         url: 'deleteComment.php?id=' + id,
         success: function (res) {
-            if (JSON.parse(res).success) {
+            if (res.success) {
                 $(`[data-comment="${id}"]`).remove();
             }
         }
     })
+    window.location = "detailClass.php?token=" + token;
 }
 
 // function deleteComment(id) {

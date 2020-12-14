@@ -133,12 +133,13 @@ if(isset($_POST['classcode'])){
                             </a>
                             <span class="card-item-label-name"><?=$fullname?></span>
                         </div>
-
+                        <?php 
+                            if($permission == 0 || $permission == 1){
+                        ?>
                         <div class="card-item-options">
-                            <i class="fas fa-ellipsis-v">
-                                
+                            <i class="fas fa-ellipsis-v"> 
                             </i>
-
+                    
                             <ul class="card-item-dropdown">
                                 <li class="card-item-dropdown-item card-item-dropdown-item-modify">
                                     <a href="modify.php?token=<?=$token?>" class="card-item-dropdown-item-link">Modify</a>
@@ -148,6 +149,7 @@ if(isset($_POST['classcode'])){
                                 </li>
                             </ul>
                         </div>
+                        <?php } ?>
                     </div>
                 </div>
                     <?php

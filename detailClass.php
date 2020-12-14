@@ -28,6 +28,7 @@
         $token = '';
         $fullname= '';
         $classname = '';
+        $permission = get_permission($data['email']);
 
         if(isset($_GET['token'])){
             $token = $_GET['token'];
@@ -151,6 +152,9 @@
                                             <div class="grid__right-item-heading-name"><?php echo getNameUserByEmail($item['user_email']); ?>
                                                 <span class="time-post-news"><?php echo $item['date_created'] ?></span>
                                             </div>
+                                            <?php 
+                                                if($permission == 0 || $permission == 1){
+                                            ?>
                                             <div class="grid__right-item-heading-options">
                                                 <div class="grid__right-item-heading-options-icon">
                                                     <i class="fas fa-ellipsis-v"></i>
@@ -161,6 +165,7 @@
                                                     </ul>
                                                 </div>
                                             </div>
+                                            <?php } ?>
                                         </h4>
 
                                         <h5 class="grid__right-item-time grid__right-item-content">
@@ -190,16 +195,20 @@
                                                         <div class="grid__right-item-heading-name"><?php echo getNameUserByEmail($cmt_item['email']); ?>
                                                             <span class="time-post-comment">(<?php echo $cmt_item['date_created'] ?>)</span>
                                                         </div>
+                                                        <?php 
+                                                            if($permission == 0 || $permission == 1){
+                                                        ?>
                                                         <div class="grid__right-item-heading-options">
                                                             <div class="grid__right-item-heading-options-icon">
                                                                 <i class="fas fa-ellipsis-v"></i>
 
                                                                 <ul class="grid__right-item-heading-dropdown">
                                                                     <!-- <li class="grid__right-dropdown-item grid__right-item-heading-dropdown-modify">Modify</li> -->
-                                                                    <li onclick = "deleteComment(<?php echo $cmt_item['id'] ?>)" class="grid__right-dropdown-item grid__right-item-heading-dropdown-delete">Delete</li>
+                                                                    <li onclick = "deleteComment(<?php echo $cmt_item['id'] ?>,'<?php echo $token ?>')" class="grid__right-dropdown-item grid__right-item-heading-dropdown-delete">Delete</li>
                                                                 </ul>
                                                             </div>
                                                         </div>
+                                                        <?php } ?>
                                                     </h4>
                                                     <h5 class="grid__right-item-time grid__right-item-content">
                                                         <?php echo $cmt_item['content'] ?>
@@ -214,7 +223,7 @@
                                             <label for="comment" class="form-label form-label-comment">Me:</label>
                                             <input type="text" name="comment" class="form-control" id="comment-<?php echo $item['id'] ?>" placeholder="Add class comment...">
                                             <div class="form-group-comment-icon">
-                                                <i onclick = 'addComment(<?php echo $item["id"];  ?>)' id='submit-comment' class="far fa-paper-plane"></i>
+                                                <i onclick = "addComment(<?php echo $item["id"];?>,'<?php echo $token ?>')" id='submit-comment' class="far fa-paper-plane"></i>
                                             </div>
                                         </div>
                                     </div>

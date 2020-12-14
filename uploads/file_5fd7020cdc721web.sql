@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2020 at 04:38 PM
+-- Generation Time: Dec 08, 2020 at 11:53 AM
 -- Server version: 10.4.16-MariaDB
 -- PHP Version: 7.4.12
 
@@ -46,9 +46,7 @@ CREATE TABLE `classroom` (
 --
 
 INSERT INTO `classroom` (`id`, `classname`, `subject`, `room`, `email`, `img`, `date_create`, `token`) VALUES
-(1, 'Web', 'Web', 'Web12', 'nguyentranquynhnhu25051999@gmail.com', 'images/img_read.jpg', '11-12-2020', '897d0729a8f2026064e4cab7fb771fca'),
-(3, '123456', '123456', '123', 'hungt2766@gmail.com', 'images/img_code.jpg', '11-12-2020', 'e13e1b5d7993f348d4ed729718131f8f'),
-(5, '123122', '3123123', '1231323', 'blightmedison313@gmail.com', 'images/Honors.jpg', '13-12-2020', '8a16feedc1385dcee2967b91813c870a');
+(0, '123456', '123456', '123567', 'nguyentranquynhnhu25051999@gmail.com', 'images/img_read.jpg', '08-12-2020', '6ccb86d2a350880e09475a3fa94573ae');
 
 -- --------------------------------------------------------
 
@@ -64,6 +62,13 @@ CREATE TABLE `comment` (
   `email` varchar(30) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`id`, `post_id`, `content`, `email`, `date_created`) VALUES
+(0, 0, 'ronaldooooo', 'nguyentranquynhnhu25051999@gma', '2020-12-06 16:05:06');
 
 -- --------------------------------------------------------
 
@@ -88,12 +93,14 @@ CREATE TABLE `news` (
 --
 
 INSERT INTO `news` (`id`, `user_email`, `title`, `content`, `file`, `type`, `date_created`, `token`) VALUES
-(35, 'hungt2766@gmail.com', '1231231231', '12312312', 'uploads/file_5fd39696ad740web.sql', 0, '2020-12-11 15:56:06', 'e13e1b5d7993f348d4ed729718131f8f'),
-(36, 'blightmedison313@gmail.com', '12231', '1231', 'uploads/file_5fd63be319c3bweb.sql', 0, '2020-12-13 16:05:55', '03d198cab272e3aae762070c78bdecab'),
-(37, 'blightmedison313@gmail.com', '12', '12312', 'uploads/file_5fd63bec46f5fweb.sql', 1, '2020-12-13 16:06:04', '03d198cab272e3aae762070c78bdecab'),
-(38, 'blightmedison313@gmail.com', 'asdas', 'assdasd', 'uploads/file_5fd63bf7e9929web.sql', 2, '2020-12-13 16:06:15', '03d198cab272e3aae762070c78bdecab'),
-(39, 'blightmedison313@gmail.com', 'Project', 'Alelelele', 'uploads/file_5fd6e2519e7eaweb.sql', 2, '2020-12-14 03:56:01', '8a16feedc1385dcee2967b91813c870a'),
-(40, 'blightmedison313@gmail.com', 'tets', 'demooooooaaa', 'uploads/file_5fd7020cdc721web.sql', 0, '2020-12-14 14:27:54', '8a16feedc1385dcee2967b91813c870a');
+(10, 'hoangvanle@gmail.com', 'gdf', 'gdfgfdgfdd', 'uploads/file_5fc7051c46e46', 2, '2020-12-02 17:59:19', '9901211752466b008b809382d37ba719'),
+(11, 'hoangvanle@gmail.com', 'rfgd', 'fgfdgd', 'uploads/file_5fc705a39e9b0', 2, '2020-12-02 17:59:22', '9901211752466b008b809382d37ba719'),
+(17, 'hoangvanle@gmail.com', 'fgdgdf', 'dfgfdg', 'uploads/file_5fc707aa31c08file_5fc7051c46e46.png', 0, '2020-12-02 17:59:24', '9901211752466b008b809382d37ba719'),
+(18, 'hoangvanle@gmail.com', 'asdfasdf', 'asdfsadf', 'uploads/file_5fc7903fb8d88main.js (1).txt', 0, '2020-12-02 17:59:25', '9901211752466b008b809382d37ba719'),
+(23, 'vungoctuan9a6dt@gmail.com', '12313211', 'fasdfasdfsdf s sdfsdf fdsfsdfs', 'uploads/file_5fc7debab25e4web (3).sql', 0, '2020-12-02 18:43:24', '9901211752466b008b809382d37ba719'),
+(0, 'nguyentranquynhnhu25051999@gmail.com', 'file db', 'aluu alaa bakakaka', 'uploads/file_5fccfe77cc6dbweb.sql', 1, '2020-12-06 15:53:27', '9901211752466b008b809382d37ba719'),
+(0, 'nguyentranquynhnhu25051999@gmail.com', 'demo', 'wakandaa', 'uploads/file_5fcd00ec8b350assignment.html', 0, '2020-12-06 16:03:56', '42bbeb61eb3d2636acaeaa8a6b4ca5a9'),
+(0, 'nguyentranquynhnhu25051999@gmail.com', '1231', '123123123', 'uploads/file_5fcd04086591bassignment.html', 0, '2020-12-06 16:17:12', '623f458a975fbad5770e78226fcdb503');
 
 -- --------------------------------------------------------
 
@@ -140,7 +147,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`username`, `password`, `hoten`, `ngaysinh`, `email`, `sdt`, `token`, `permission`) VALUES
 ('hoanghung', '$2y$10$rF5xkMMitjYm4TgaVetxPO0LtFXhk2XNfVaTqUj5dhOosFkaL/hSS', 'Nguyễn Hoàng Hưng', '25/05/1999', 'blightmedison313@gmail.com', '0968030739', '8be9ccd0c29230bf228df8bdeed4d3d0', 1),
 ('dangdang', '$2y$10$/zwc5g9wH3reSMPgG3fUkeAPxbDKNI8Lz.PGdXc0TdB9b2yOvjXh2', 'Phạm Hồng Hải Đăng', '25/05/1999', 'dang1212asd@gmail.com', '0968030739', '00849a563cb4f25ea49f16243962ef0a', 2),
-('minhhung', '$2y$10$xGN0gqSK5.3C34cxsN5YduRoS/P27/fkDAj8JO5nfmabDCeK0fYuy', 'Trương Minh Hưng', '25/05/1999', 'hungt2766@gmail.com', '0968030739', '058639030e4b651984247865b376fc1f', 1),
+('minhhung', '$2y$10$xGN0gqSK5.3C34cxsN5YduRoS/P27/fkDAj8JO5nfmabDCeK0fYuy', 'Trương Minh Hưng', '25/05/1999', 'hungt2766@gmail.com', '0968030739', '058639030e4b651984247865b376fc1f', 2),
 ('nhunhu', '$2y$10$UutMppkzzN5gIERvvlwTKuKaAmnoLpclA8aZEgfgK9ZNikodXRxw.', 'Nguyễn Trần Quỳnh Như', '25/05/1999', 'nguyentranquynhnhu2505@gmail.com', '0968030739', '5835de49859f6b282e0719b2728416a9', 1),
 ('Admin', '$2y$10$S1nSU5SDYD4en8IaJ5NAxu5ImiJzd48HLfjO9Bs.muhwz7Iu7Y/im', 'Admin', '25/05/1999', 'nguyentranquynhnhu25051999@gmail.com', '0968030739', 'f636a6d959d8646220b4681a4cac4bdb', 0);
 
@@ -153,40 +160,19 @@ INSERT INTO `user` (`username`, `password`, `hoten`, `ngaysinh`, `email`, `sdt`,
 DROP TABLE IF EXISTS `user_classroom`;
 CREATE TABLE `user_classroom` (
   `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `token` varchar(300) COLLATE utf8_unicode_ci NOT NULL,
-  `status` varchar(10) COLLATE utf8_unicode_ci NOT NULL
+  `token` varchar(300) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `user_classroom`
 --
 
-INSERT INTO `user_classroom` (`email`, `token`, `status`) VALUES
-('blightmedison313@gmail.com', '8a16feedc1385dcee2967b91813c870a', ''),
-('hungt2766@gmail.com', 'e13e1b5d7993f348d4ed729718131f8f', ''),
-('nguyentranquynhnhu25051999@gmail.com', '897d0729a8f2026064e4cab7fb771fca', '');
+INSERT INTO `user_classroom` (`email`, `token`) VALUES
+('nguyentranquynhnhu25051999@gmail.com', '6ccb86d2a350880e09475a3fa94573ae');
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `classroom`
---
-ALTER TABLE `classroom`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `comment`
---
-ALTER TABLE `comment`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `news`
---
-ALTER TABLE `news`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `reset_token`
@@ -205,28 +191,6 @@ ALTER TABLE `user`
 --
 ALTER TABLE `user_classroom`
   ADD PRIMARY KEY (`email`,`token`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `classroom`
---
-ALTER TABLE `classroom`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `comment`
---
-ALTER TABLE `comment`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
-
---
--- AUTO_INCREMENT for table `news`
---
-ALTER TABLE `news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
