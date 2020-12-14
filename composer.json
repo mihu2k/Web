@@ -1,7 +1,7 @@
 {
     "require": {
         "phpmailer/phpmailer": "^6.2"
-    }
+    },
     "scripts": {
         "post-install-cmd": [
             "php artisan clear-compiled",
