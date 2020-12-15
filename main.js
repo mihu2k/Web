@@ -467,11 +467,13 @@ function deleteComment(id,token) {
 //             'Content-Type': 'application/json'
 //         }
 //     }
-//     fetch(deleteComment.php + '/' + id)
+//     fetch('"deleteComment.php?id=" + id')
 //         .then(function(response) {
 //             return response.json();
 //         })
-//         .then()
+//         .then(() => {
+//             $(`[data-comment="${id}"]`).remove();
+//         })
 // }
 
 $('document').ready(function () {

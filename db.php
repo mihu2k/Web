@@ -16,7 +16,7 @@
 	function open_db(){
 		$conn = new mysqli(HOST, USER, PASS, DB);
 		if($conn->connect_error){
-			die('Connect error: '.$conn->connect_error);
+			die('Connect errorccccccccccc: '.$conn->connect_error);
 		}
 		return $conn;
 	}

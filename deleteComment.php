@@ -11,7 +11,5 @@ require_once("db.php");
         else{
             echo 'fail';
         }
-
     }
-    
 ?>
