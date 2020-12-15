@@ -20,8 +20,10 @@
         if (isset($_POST['username']) && isset($_POST['password'])) {
             $username = $_POST['username'];
             $password = $_POST['password'];
-
-            // echo "$_SESSION['username']";
+            if(!empty($_POST['remember'])){
+                setcookie('username',$username,time() + 30*24*3600,'/');
+                setcookie('password',$password,time() + 30*24*3600,'/');
+            }
 
             $data = login($username, $password);
             if($data){
@@ -44,13 +46,13 @@
 
             <div class="form-group">
                 <label for="username" class="form-label">Username</label>
-                <input type="text" name="username" class="form-control" id="username" placeholder="Enter your username">
+                <input type="text" name="username" class="form-control" id="username" placeholder="Enter your username" value="<?php if(isset($_COOKIE['username'])) { echo $_COOKIE['username'];}?>">
                 <span class="form-message"></span>
             </div>
 
             <div class="form-group">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" name="password" class="form-control" id="password" placeholder="Enter your password">
+                <input type="password" name="password" class="form-control" id="password" placeholder="Enter your password" value="<?php if(isset($_COOKIE['password'])) { echo $_COOKIE['password'];}?>">
                 <span class="form-message"></span>
             </div>
 
