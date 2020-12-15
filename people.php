@@ -118,7 +118,9 @@ if(isset($_POST['email'])){
                                 # code...
                                 $permisson = $row['permission'];
                                 $people_fullname = $row['hoten'];
+                                $count = $count + 1;
                                 if ($permisson == 1 || $permisson == 0) {
+                                    $count = $count - 1;
                                 ?>
                                 <li class="body-detail-teachers-item">
                                     <div class="body-detail-teachers-item-name"><?=$people_fullname?></div>
@@ -153,7 +155,6 @@ if(isset($_POST['email'])){
                                 $permisson = $row['permission'];
                                 $people_fullname = $row['hoten'];
                                 if ($permisson == 2) {
-                                    $count = $count + 1;
                                     # code...
                             ?>
                                         <li class="body-detail-students-item">
