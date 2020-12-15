@@ -102,6 +102,10 @@
             </div>
 
             <button class="form-submit" name = "signup_btn">Sign up</button>
+
+            <div class="form-nav-login">Already have an account?
+                <a href="signIn.php" class="form-nav-login-link">Sign in</a>
+            </div>
         </form>
     </div>
 

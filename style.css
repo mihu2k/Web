@@ -669,8 +669,16 @@ html {
   margin: auto;
 }
 
+.auth-form-dialog.auth-form-dialog-remove {
+  display: flex;
+  height: 100vh;
+}
+
 .auth-form__container.auth-form__container-remove {
   padding: 0 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  margin: auto;
 }
 
 .auth-form-text {
@@ -1319,6 +1327,25 @@ html {
   color: #4caf50;
   z-index: 10;
   font-weight: bold;
+}
+
+/* Chỉnh sửa */
+.remove-class-link {
+  color: white;
+}
+
+.remove-class-link:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.create-item-notification {
+  color: #333;
+}
+
+.create-item-notification:hover {
+  color: #333;
+  text-decoration: none;
 }
 
 /* Responsive */

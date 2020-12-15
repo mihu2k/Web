@@ -232,7 +232,7 @@
                                 <?php
                                 if($item['type'] == 1){
                                     ?>
-                                    <a href="download.php?file=<?php echo urlencode($item['file'])?>">
+                                    <a href="download.php?file=<?php echo urlencode($item['file'])?>" class="create-item-notification">
                                         <div class="grid__right-item">
                                             <h4 class="grid__right-item-heading"><?php echo getNameUserByEmail($item['user_email']); ?> posted a new material: <?php echo $item['title'] ?></h4>
                                             <h5 class="grid__right-item-time"><?php echo $item['date_created'] ?></h5>
@@ -243,7 +243,7 @@
                                 <?php
                                 if($item['type'] == 2){
                                     ?>
-                                    <a href="assignment.php?token=<?=$token?>&id=<?=$item['id']?>">
+                                    <a href="assignment.php?token=<?=$token?>&id=<?=$item['id']?>" class="create-item-notification">
                                         <div class="grid__right-item">
                                             <h4 class="grid__right-item-heading"><?php echo getNameUserByEmail($item['user_email']); ?> posted a new assignment: <?php echo $item['title'] ?></h4>
                                             <h5 class="grid__right-item-time"><?php echo $item['date_created'] ?></h5>

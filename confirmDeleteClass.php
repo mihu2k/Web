@@ -23,9 +23,8 @@ require_once("db.php");
     <<?php 
         $token = $_GET['token'];
      ?>
-    <div class="auth-form-dialog">
+    <div class="auth-form-dialog auth-form-dialog-remove">
         <div class="auth-form__container auth-form__container-remove">
-
             <form action="" method="POST" id="form-remove">
                 <div class="auth-form-text">
                     <i class="far fa-question-circle"></i>
@@ -34,10 +33,10 @@ require_once("db.php");
 
                 <div class="auth-form__controls">
                     <button class="btn-form-remove-class" name="btn_remove_yes">
-                        <a href="remove.php?token=<?=$token?>">Yes</a>
+                        <a href="remove.php?token=<?=$token?>" class= "remove-class-link">Yes</a>
                     </button>
                     <button type="button" class="btn-form-remove-class btn-back">
-                        <a href="home.php">No</a>
+                        <a href="home.php" class= "remove-class-link">No</a>
                     </button>
                 </div>
             </form>
